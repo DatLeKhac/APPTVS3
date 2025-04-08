@@ -1,4 +1,3 @@
-
 import 'package:application_learning_english/login_page.dart';
 import 'package:application_learning_english/screens/change_password_screen.dart';
 import 'package:application_learning_english/screens/edit_screen.dart';
@@ -20,43 +19,35 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  late SharedPreferences
-      prefs;
-  User?
-      user;
+  late SharedPreferences prefs;
+  User? user;
 
   @override
   void initState() {
     super.initState();
+    initState();
     loadUser();
   }
 
-
   loadUser() async {
-    user =
-        await getUserData();
+    user = await getUserData();
     setState(() {});
   }
 
   // Hàm đăng xuất người dùng
   void logOutUser() async {
-    SharedPreferences prefs = await SharedPreferences
-        .getInstance(); // Lấy instance của SharedPreferences
-    await prefs
-        .remove('token');
+    SharedPreferences prefs =
+        await SharedPreferences.getInstance(); // Lấy instance của SharedPreferences
+    await prefs.remove('token');
     Navigator.pushReplacement(
-
       context,
-      MaterialPageRoute(
-        builder: (context) => MyLogin(),
-      ),
+      MaterialPageRoute(builder: (context) => MyLogin()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         // AppBar để hiển thị thanh tiêu đề
         automaticallyImplyLeading: false,
@@ -65,51 +56,31 @@ class _AccountScreenState extends State<AccountScreen> {
       body: SingleChildScrollView(
         // Cho phép cuộn màn hình nếu nội dung dài
         child: Padding(
-          padding: const EdgeInsets.all(
-              30),
+          padding: const EdgeInsets.all(30),
           child: Column(
-
-            crossAxisAlignment: CrossAxisAlignment
-                .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                // Tiêu đề "Profile"
                 "Profile",
-                style: TextStyle(
-                  fontSize: 36, // Cỡ chữ lớn
-                  fontWeight: FontWeight.bold, // Đậm
-                ),
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 40), // Khoảng cách giữa các phần tử
+              const SizedBox(height: 40),
               const Text(
-                // Tiêu đề "Account"
-                "Account",
-                style: TextStyle(
-                  fontSize: 24, // Cỡ chữ vừa
-                  fontWeight: FontWeight.w500, // Độ đậm vừa phải
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 20), // Khoảng cách giữa các phần tử
+              const SizedBox(height: 20),
               SizedBox(
-                // Phần này để hiển thị ảnh đại diện và thông tin người dùng
-                width: double.infinity, // Chiếm toàn bộ chiều rộng
+                width: double.infinity,
                 child: Row(
-
                   children: [
-                    Image.asset("assets/avatar.png",
-                        width: 70, height: 70), // Ảnh đại diện
-                    const SizedBox(
-                        width:
-                            20),
-                    if (user !=
-                        null) // Kiểm tra xem dữ liệu người dùng đã có chưa
+                    Image.asset("assets/avatar.png", width: 70, height: 70),
+                    const SizedBox(width: 20),
+                    if (user != null)
                       Column(
-
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            user?.fullName ??
-                                'Username',
+                            user?.fullName ?? 'Username',
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -117,8 +88,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            user?.username ??
-                                "Email not available",
+                            user?.username ?? "Email not available",
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
@@ -130,7 +100,6 @@ class _AccountScreenState extends State<AccountScreen> {
                       const CircularProgressIndicator(),
                     const Spacer(),
                     ForwardButton(
-
                       onTap: () {
                         Navigator.push(
                           context,
@@ -145,12 +114,8 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const SizedBox(height: 40),
               const Text(
-                // Tiêu đề "Settings"
                 "Settings",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 20),
               SettingItem(
@@ -162,9 +127,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => LeaderBoards(),
-                    ),
+                    MaterialPageRoute(builder: (context) => LeaderBoards()),
                   );
                 },
               ),
@@ -195,7 +158,6 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const SizedBox(height: 20),
               SettingLogout(
-                // Mục "Log out" để đăng xuất người dùng
                 title: "Log out",
                 icon: Ionicons.log_out,
                 bgColor: Colors.red.shade100,
