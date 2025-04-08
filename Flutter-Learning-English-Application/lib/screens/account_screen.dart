@@ -25,7 +25,6 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
-    initState();
     loadUser();
   }
 
